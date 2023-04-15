@@ -1,12 +1,15 @@
-#https://drive.google.com/file/d/1CWE2Qpp2VeRXEfe5eKMBxel5tjA5HrZE/view?usp=share_link
 def unificar(nombres, notas_1, notas_2):
     dic = {}
     list_nombres = [nombre.strip().strip("'") for nombre in nombres.split(",")]
-    for i in range(len(list_nombres)):
-        dic[list_nombres[i]] =[notas_1[i], notas_2[i]]
+    for nombre, notas1, notas2 in zip(nombres, notas_1, notas_2):
+        dic[nombre] = [notas1, notas2]
     return dic
-
-
+def unificar1(nombres, notas_1, notas_2):
+    dic = {}
+    list_nombres = [nombre.strip().strip("'") for nombre in nombres.split(",")]
+    for k, v1, v2 in list_nombres, notas_1, notas_2 :
+        dic[k] =[v1, v2]
+    return dic
 def calcularPromedioAlumno(lista):
     dic_promedios = {alumno: sum(lista[alumno])/len(lista[alumno]) for alumno in lista  }
     return dic_promedios
@@ -39,6 +42,8 @@ notas_2 = [30, 95, 28, 84, 84, 43, 66, 51, 4, 11, 58, 10, 13, 34, 96, 71, 86, 37
            64, 13, 8, 87, 14, 14, 49, 27, 55, 69, 77, 59, 57, 40, 96, 24, 30, 73,
            95, 19, 47, 15, 31, 39, 15, 74, 33, 57, 10]
 
+
+print(unificar1(nombres, notas_1, notas_2))
 lista = unificar(nombres, notas_1, notas_2)
 print(lista)
 print(calcularPromedioAlumno(lista))
